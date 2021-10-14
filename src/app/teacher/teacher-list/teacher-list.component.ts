@@ -12,6 +12,7 @@ public newTeacherDetail:any = []
 public newfilterdatee:any=''
 @Input() public filteronDate:any=''
 @Input('datefilter') globalFilter:any= ''
+@Input() searchField=''
   constructor( private _teacherDetailService: TeacherDetailServiceService) { }
 
   ngOnInit(): void {
@@ -23,10 +24,10 @@ public newfilterdatee:any=''
     console.log(this.filteronDate)
     console.log(this.teacherDetail)
     this.changeData(this.filteronDate)
-    this.teacherDetail = this.teacherDetail.filter((x:any) => x.joinDate === this.filteronDate)
+    // this.teacherDetail = this.teacherDetail.filter((x:any) => x.joinDate === this.filteronDate)
 
-    console.log(this.teacherDetail)
-    return this.teacherDetail
+    // console.log(this.teacherDetail)
+    // return this.teacherDetail
   }
   changeData(newdate:any){
     this.teacherDetail = this.teacherDetail.filter((x:any) => x.joinDate === newdate)

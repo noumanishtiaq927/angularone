@@ -10,6 +10,7 @@ export class ParentFilterComponent implements OnInit {
   @Input() datefilter =''
   @Output() dateofFilter = new EventEmitter()
   @Input() filterjoinDate:any =""
+  search=""
   constructor() { }
 
   ngOnInit(): void {

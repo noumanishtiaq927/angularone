@@ -15,6 +15,9 @@ import { Injectable } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpDemoComponent } from './http-demo/http-demo.component';
 import { ParentFilterComponent } from './parent-filter/parent-filter/parent-filter.component';
+import { AllDataComponent } from './data/all-data/all-data.component';
+import { AddDataComponent } from './data/add-data/add-data.component';
+import { DataServiceService } from './service/data/data-service.service';
 
 
 export class ServiceNameService {
@@ -33,6 +36,8 @@ export class ServiceNameService {
     FilterComponent,
     HttpDemoComponent,
     ParentFilterComponent,
+    AllDataComponent,
+    AddDataComponent,
 
   ],
   imports: [
@@ -42,7 +47,7 @@ export class ServiceNameService {
     HttpClientModule
 
   ],
-  providers: [StudentDetailServiceService, TeacherDetailServiceService],
+  providers: [StudentDetailServiceService, TeacherDetailServiceService , DataServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

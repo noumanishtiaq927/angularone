@@ -13,6 +13,7 @@ export class StudentListComponent implements OnInit {
   public newfilterdatee:any=''
   public newfilterdaatee:any=''
   @Input() public filteronDate:any=''
+  @Input() searchField=''
   constructor(private _studentDetailService: StudentDetailServiceService) { }
 
   ngOnInit(): void {
@@ -22,9 +23,13 @@ ngOnChanges(){
   this.newfilterdaatee = new Date(this.filteronDate).toLocaleDateString()
   console.log(this.filteronDate)
   console.log(this.studentDetail)
+  console.log(this.searchField + 'searchField')
+  const namenew = this.searchField
   this.studentDetaill = this.studentDetail.filter((x:any) => x.joinDate === this.newfilterdaatee)
+  this.studentDetaill = this.studentDetail.filter((x:any) => x.name === /namenew/i)
 console.log('filteronDate'+ this.newfilterdaatee)
   console.log(this.studentDetaill)
+  console.log(  namenew)
   this.studentDetail=this.studentDetaill
   return this.studentDetail
 }
