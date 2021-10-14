@@ -18,6 +18,7 @@ import { ParentFilterComponent } from './parent-filter/parent-filter/parent-filt
 import { AllDataComponent } from './data/all-data/all-data.component';
 import { AddDataComponent } from './data/add-data/add-data.component';
 import { DataServiceService } from './service/data/data-service.service';
+import { RouterModule } from '@angular/router';
 
 
 export class ServiceNameService {
@@ -44,7 +45,8 @@ export class ServiceNameService {
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
 
   ],
   providers: [StudentDetailServiceService, TeacherDetailServiceService , DataServiceService],

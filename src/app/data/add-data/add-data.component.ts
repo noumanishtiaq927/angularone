@@ -14,7 +14,7 @@ export class AddDataComponent implements OnInit {
   testData:any
 
 
-  constructor(private dataservice:DataServiceService) {
+  constructor(private dataservice:DataServiceService, private router: Router) {
 
    }
 
@@ -30,6 +30,7 @@ export class AddDataComponent implements OnInit {
     }
 
     this.dataservice.additem(testDataAdd)
+    this.router.navigate(['/alldata'])
 
 
   }

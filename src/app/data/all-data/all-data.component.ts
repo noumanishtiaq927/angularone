@@ -7,7 +7,7 @@ import { DataServiceService } from 'src/app/service/data/data-service.service';
   styleUrls: ['./all-data.component.css']
 })
 export class AllDataComponent implements OnInit {
-  showData:boolean = false;
+  showData:boolean = true;
   localItems:any
   testData:any=[]
 
