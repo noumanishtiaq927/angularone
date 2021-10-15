@@ -17,10 +17,7 @@ public studentData = [
     return this.studentData;
   }
   filterStudent(filtevalue:any){
-    console.log(typeof filtevalue)
-    this.studentData = this.studentData.filter((x:any)=> x.joinDate === <string> <any>filtevalue)
-    console.log(this.studentData)
-    return this.studentData
-
+    console.log(filtevalue)
+    return this.studentData.filter((x:any)=> x.joinDate === <string> <any>filtevalue)
   }
 }

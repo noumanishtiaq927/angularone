@@ -19,6 +19,10 @@ import { AllDataComponent } from './data/all-data/all-data.component';
 import { AddDataComponent } from './data/add-data/add-data.component';
 import { DataServiceService } from './service/data/data-service.service';
 import { RouterModule } from '@angular/router';
+import { DateFilterService } from './service/filter/date-filter.service';
+import { FilterRouteComponent } from './filterpage/filter-route/filter-route.component';
+import { SubjectComponent } from './subject/subject.component';
+import { SubjectServiceService } from './service/subject/subject-service.service';
 
 
 export class ServiceNameService {
@@ -39,6 +43,9 @@ export class ServiceNameService {
     ParentFilterComponent,
     AllDataComponent,
     AddDataComponent,
+    FilterRouteComponent,
+    SubjectComponent,
+
 
   ],
   imports: [
@@ -49,7 +56,7 @@ export class ServiceNameService {
     RouterModule
 
   ],
-  providers: [StudentDetailServiceService, TeacherDetailServiceService , DataServiceService],
+  providers: [StudentDetailServiceService, TeacherDetailServiceService , DataServiceService, DateFilterService , SubjectServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

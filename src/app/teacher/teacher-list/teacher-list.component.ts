@@ -1,4 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, DoCheck, Input, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { DateFilterService } from 'src/app/service/filter/date-filter.service';
 import { TeacherDetailServiceService } from 'src/app/service/teacher/teacher-detail-service.service';
 
 @Component({
@@ -6,46 +8,50 @@ import { TeacherDetailServiceService } from 'src/app/service/teacher/teacher-det
   templateUrl: './teacher-list.component.html',
   styleUrls: ['./teacher-list.component.css']
 })
-export class TeacherListComponent implements OnInit {
+export class TeacherListComponent implements OnInit,DoCheck {
 public teacherDetail:any = []
 public newTeacherDetail:any = []
 public newfilterdatee:any=''
 @Input() public filteronDate:any=''
 @Input('datefilter') globalFilter:any= ''
 @Input() searchField=''
-  constructor( private _teacherDetailService: TeacherDetailServiceService) { }
+subs: Subscription | undefined
+filterofDate =''
+  constructor( private _teacherDetailService: TeacherDetailServiceService, private filterservice:DateFilterService) {
+
+   }
 
   ngOnInit(): void {
     this.teacherDetail = this._teacherDetailService.getTeacherDetail()
-    console.log('calling.....on iit')
-  }
-  ngOnChanges(){
-    this.filteronDate = new Date(this.filteronDate).toLocaleDateString()
-    console.log(this.filteronDate)
-    console.log(this.teacherDetail)
-    this.changeData(this.filteronDate)
-    // this.teacherDetail = this.teacherDetail.filter((x:any) => x.joinDate === this.filteronDate)
 
-    // console.log(this.teacherDetail)
-    // return this.teacherDetail
+    this.filterofDate = this.filterservice.newdata
+    this.subs = this.filterservice.datefilterr.subscribe((data: any) => {
+      this.filterofDate = data;
+      this.teacherDetail = this._teacherDetailService.filterTeacher(this.filterofDate);
+      console.log(data);
+      console.log(this.teacherDetail);
+    });
   }
-  changeData(newdate:any){
-    this.teacherDetail = this.teacherDetail.filter((x:any) => x.joinDate === newdate)
+  ngDoCheck(): void {
+    this.filterofDate = this.filterservice.newdata
+    this.subs = this.filterservice.datefilterr.subscribe((data: any) => {
+      this.filterofDate = data;
+      this.teacherDetail = this._teacherDetailService.filterTeacher(this.filterofDate);
+      console.log(data);
+      console.log(this.teacherDetail);
+    });
+  }
+  ngOnDestroy() {
+    this.subs?.unsubscribe();
+  }
 
-    console.log('changeData' + newdate)
-    console.log('changeData' + this.teacherDetail)
-    return this.teacherDetail
-  }
+
 
 newfilterdate($event:any){
-  this.newfilterdatee=$event
-  this.filteronDate = new Date(this.newfilterdatee).toLocaleDateString()
-  console.log(this.filteronDate)
-  console.log(this.teacherDetail)
-  this.teacherDetail = this.teacherDetail.filter((x:any) => x.joinDate === this.filteronDate)
-console.log('globalFilter' + this.globalFilter)
-  console.log(this.teacherDetail)
-  return this.teacherDetail
-
+  // this.newfilterdatee=$event
+  // this.filteronDate = new Date(this.newfilterdatee).toLocaleDateString()
+  // console.log(this.filteronDate)
+  // console.log(this.teacherDetail)
+  // return  this._teacherDetailService.filterTeacher(this.filteronDate)
 }
 }

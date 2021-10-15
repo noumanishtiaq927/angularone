@@ -10,12 +10,7 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/">Parent-Child-Communication</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/teacher">Teacher Details</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/student">Student Details</a>
-        </li>
+
         <li class="nav-item">
           <a class="nav-link" routerLink="/httpdemo">Http demo</a>
         </li>
@@ -31,7 +26,7 @@
 
 
       </ul>
-
+      <app-parent-filter *ngIf="filtershow"></app-parent-filter>
     </div>
   </div>
 </nav>

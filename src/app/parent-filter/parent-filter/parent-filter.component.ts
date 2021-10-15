@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Subject } from 'rxjs';
+import { DateFilterService } from 'src/app/service/filter/date-filter.service';
 
 @Component({
   selector: 'app-parent-filter',
@@ -7,18 +8,22 @@ import { Subject } from 'rxjs';
   styleUrls: ['./parent-filter.component.css']
 })
 export class ParentFilterComponent implements OnInit {
-  datefilterr = new Subject()
+
   @Input() datefilter =''
   @Output() dateofFilter = new EventEmitter()
   @Input() filterjoinDate:any =""
   search=""
-  constructor() { }
+  newdata =''
+  constructor(private filterservice : DateFilterService) { }
 
   ngOnInit(): void {
   }
 showDate(){
-  this.dateofFilter.emit(`${this.datefilter}`)
   console.log(this.datefilter)
-  this.datefilterr = this.datefilterr
+  // this.filterservice.getfilterdate(this.datefilter);
+  this.newdata = new Date(this.datefilter).toLocaleDateString();
+  this.filterservice.datefilterr.next(this.newdata)
+  this.filterservice.newdata = this.newdata
+
 }
 }
